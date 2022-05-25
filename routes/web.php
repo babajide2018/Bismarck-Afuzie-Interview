@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TaskController;
@@ -51,6 +52,7 @@ Route::get('/user/password/edit', [UserController::class, 'passwordEdit'])->name
 
 Route::post('/user/password/edit', [UserController::class, 'passwordUpdate'])->name('user.passwordUpdate');
 
+
 Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('users', UsersController::class)->except([
         'create', 'show', 'store'
@@ -58,6 +60,12 @@ Route::prefix('admin')->name('admin.')->middleware('can:manage-users')->group(fu
 });
 
 
+/*API Endpoints*/
+
+Route::get('/list-projects', [ApiController::class, 'projects']);
+Route::get('/list-todos', [ApiController::class, 'todo']);
+Route::get('/view-todo/{task}', [ApiController::class, 'viewTodo']);
+Route::get('/delete-todo/{task}', [ApiController::class, 'deleteTodo']);
 
 
 
