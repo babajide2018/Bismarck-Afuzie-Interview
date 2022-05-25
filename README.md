@@ -30,3 +30,12 @@ I have included registration feature on it for new users.
 I created a test account which can also be used to login:
 email: admin@gmail.com
 password: 12345678
+
+
+/*API Endpoints*/
+
+Route::get('/list-projects', [ApiController::class, 'projects']);
+Route::get('/list-todos', [ApiController::class, 'todo']);
+Route::get('/view-todo/{task}', [ApiController::class, 'viewTodo']);
+Route::get('/delete-todo/{task}', [ApiController::class, 'deleteTodo']);
+
